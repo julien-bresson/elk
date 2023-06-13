@@ -11,8 +11,12 @@ services:
     environment:
       - node.name=es01
       - cluster.name=${CLUSTER_NAME}
+<<<<<<< HEAD
       - cluster.initial_master_nodes=es01,es02,es03
       - discovery.seed_hosts=es02,es03
+=======
+      - cluster.initial_master_nodes=es01
+>>>>>>> 4ce5b465f21a051fd09faf3868c5692a0d90a56b
       - node.roles= [ master, data, ingest ]
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - bootstrap.memory_lock=true
@@ -27,6 +31,7 @@ services:
         [
           "CMD-SHELL",
           "curl -s http://localhost:9200",
+<<<<<<< HEAD
         ]
       interval: 10s
       timeout: 10s
@@ -83,6 +88,8 @@ services:
         [
           "CMD-SHELL",
           "curl -s http://localhost:9200",
+=======
+>>>>>>> 4ce5b465f21a051fd09faf3868c5692a0d90a56b
         ]
       interval: 10s
       timeout: 10s
@@ -91,10 +98,6 @@ services:
   kibana:
     depends_on:
       es01:
-        condition: service_healthy
-      es02:
-        condition: service_healthy
-      es03:
         condition: service_healthy
     image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
     volumes:
